@@ -10,6 +10,7 @@ const {
   PGPASSWORD,
   ENDPOINT_ID,
 } = process.env;
+console.log(process.env);
 
 const sql = postgres({
   host: PGHOST,
@@ -17,10 +18,17 @@ const sql = postgres({
   username: PGUSER,
   password: PGPASSWORD,
   port: 5432,
-  ssl: { rejectUnauthorized: false },
+  ssl: 'require',
   connection: {
     options: `project=${ENDPOINT_ID}`,
   },
 });
+
+async function getPgVersion() {
+  const result = await sql`select version()`;
+  console.log(result);
+}
+
+getPgVersion();
 
 export default sql;
