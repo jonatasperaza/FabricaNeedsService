@@ -16,7 +16,7 @@ Fabrica Needs Service is a microservice built with Node.js, Express, and Postgre
 
 - Node.js (>=14.x)
 - PostgreSQL
-- MercadoPago account
+- MercadoPago account +18
 - Vercel account (for deployment)
 
 ### Installation
