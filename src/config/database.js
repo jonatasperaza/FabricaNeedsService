@@ -10,7 +10,6 @@ const {
   PGPASSWORD,
   ENDPOINT_ID,
 } = process.env;
-console.log(process.env);
 
 const sql = postgres({
   host: PGHOST,
