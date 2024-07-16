@@ -1,15 +1,115 @@
-import { Router } from 'express';
+// src/routes/index.js
+import express from 'express';
 import { createPaymentHandler } from '../controllers/paymentController.js';
 import { webhookHandler } from '../controllers/webhookController.js';
-import { pingStatus } from '../utils/pingStatus.js';
 
-const router = Router();
+const router = express.Router();
 
-router.get('/', async(req, res) => {
-  res.status(200).json({ message: 'API rodando', ping: await pingStatus() });
+/**
+ * @swagger
+ * /:
+ *   get:
+ *     summary: Check if the API is running
+ *     responses:
+ *       200:
+ *         description: API funcionando
+ *       400:
+ *         description: DEU PAU
+ */
+router.get('/', (req, res) => {
+  res.send('API funcionando');
 });
 
-router.post('/notify', webhookHandler);
+/**
+ * @swagger
+ * /payment:
+ *   post:
+ *     summary: Create a new payment
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               paymentData:
+ *                 type: object
+ *                 properties:
+ *                   transaction_amount:
+ *                     type: number
+ *                     example: 0
+ *                   description:
+ *                     type: string
+ *                     example: descrição do produto
+ *                   paymentMethodId:
+ *                     type: string
+ *                     example: PIX
+ *                   email:
+ *                     type: string
+ *                     example: example@example.com
+ *                   identificationType:
+ *                     type: string
+ *                     example: CPF
+ *                   number:
+ *                     type: number
+ *                     example: 12345678901
+ *     responses:
+ *       201:
+ *         description: Payment created successfully
+ *       400:
+ *         description: Error creating payment
+ */
 router.post('/payment', createPaymentHandler);
+
+/**
+ * @swagger
+ * /notify:
+ *   post:
+ *     summary: Handle payment status updates from MercadoPago
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               action:
+ *                 type: string
+ *                 example: payment.updated
+ *               api_version:
+ *                 type: string
+ *                 example: v1
+ *               data:
+ *                 type: object
+ *                 properties:
+ *                   id:
+ *                   type: string
+ *                   example: 123456789
+ *               date_created:
+ *                 type: date
+ *                 example: 2021-09-01T00:00:00Z
+ *               id:
+ *                 type: string
+ *                 example: 123456
+ *               live_mode:
+ *                 type: boolean
+ *                 example: false
+ *               type:
+ *                type: string
+ *                example: payment
+ *               user_id:
+ *                 type: string
+ *                 example: 123456
+ *     responses:
+ *       200:
+ *         description: Data inserted successfully
+ *       201:
+ *         description: Data received successfully
+ *       400:
+ *         description: Error inserting data
+ *       304:
+ *        description: Payment previously approved
+ */
+router.post('/notify', webhookHandler);
 
 export default router;
