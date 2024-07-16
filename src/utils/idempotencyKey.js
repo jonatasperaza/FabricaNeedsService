@@ -6,7 +6,7 @@ export const gerarIdempotencyKey = (tamanho) => {
         Math.floor(Math.random() * caracteres.length)
       );
     }
-    console.log(resultado);
+    console.log('IdempotencyKey Generated');
     return resultado;
   };
   

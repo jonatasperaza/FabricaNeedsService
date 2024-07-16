@@ -2,7 +2,6 @@ import { createPayment } from '../services/mercadoPagoService.js';
 import { gerarIdempotencyKey } from '../utils/idempotencyKey.js';
 
 export const createPaymentHandler = (req, res) => {
-  console.log(req.body);
   const { paymentData } = req.body;
   console.log(paymentData);
   
