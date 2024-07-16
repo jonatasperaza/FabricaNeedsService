@@ -2,7 +2,6 @@ import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import path from 'path';
 
-// Defina o NODE_PATH para o diretório node_modules na raiz
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 process.env.NODE_PATH = path.resolve(__dirname, '../node_modules');
