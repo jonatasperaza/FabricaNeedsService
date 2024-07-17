@@ -2,6 +2,7 @@
 import express from 'express';
 import { createPaymentHandler } from '../controllers/paymentController.js';
 import { webhookHandler } from '../controllers/webhookController.js';
+import swaggerUi from 'swagger-ui-express';
 
 const router = express.Router();
 
@@ -14,11 +15,9 @@ const router = express.Router();
  *       200:
  *         description: API funcionando
  *       400:
- *         description: DEU PAU
+ *         description: Internal Server ERROR
  */
-router.get('/', (req, res) => {
-  res.send('API funcionando');
-});
+router.get('/');
 
 /**
  * @swagger

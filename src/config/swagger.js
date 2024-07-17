@@ -28,5 +28,5 @@ const swaggerOptions = {
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 
 export default function (app) {
-  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+  app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 }
