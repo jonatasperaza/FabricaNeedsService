@@ -2,7 +2,7 @@
 import express from 'express';
 import { createPaymentHandler } from '../controllers/paymentController.js';
 import { webhookHandler } from '../controllers/webhookController.js';
-import swaggerUi from 'swagger-ui-express';
+
 
 const router = express.Router();
 
