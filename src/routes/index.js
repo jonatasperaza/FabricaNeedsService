@@ -83,8 +83,8 @@ router.post('/payment', createPaymentHandler);
  *                 type: object
  *                 properties:
  *                   id:
- *                   type: string
- *                   example: 123456789
+ *                     type: string
+ *                     example: 123456789
  *               date_created:
  *                 type: date
  *                 example: 2021-09-01T00:00:00Z
@@ -98,8 +98,8 @@ router.post('/payment', createPaymentHandler);
  *                type: string
  *                example: payment
  *               user_id:
- *                 type: string
- *                 example: 123456
+ *                type: string
+ *                example: 123456
  *     responses:
  *       200:
  *         description: Data inserted successfully
@@ -109,6 +109,7 @@ router.post('/payment', createPaymentHandler);
  *         description: Error inserting data
  *       304:
  *        description: Payment previously approved
+ * 
  */
 router.post('/notify', webhookHandler);
 

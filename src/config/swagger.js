@@ -15,6 +15,10 @@ const swaggerOptions = {
         url: 'http://localhost:3000',
         description: 'Local server',
       },
+      {
+        url: 'https://fabricaneeds-back-equipe5-3edw.onrender.com',
+        description: 'Production server',
+      }
       // Add your production server URL here
     ],
   },
