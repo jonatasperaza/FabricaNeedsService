@@ -1,4 +1,3 @@
-// src/config/swagger.js
 import swaggerJsDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 
@@ -19,7 +18,6 @@ const swaggerOptions = {
         url: 'https://fabricaneeds-back-equipe5-3edw.onrender.com',
         description: 'Production server',
       }
-      // Add your production server URL here
     ],
   },
   apis: ['src/routes/*.js'],
@@ -27,6 +25,13 @@ const swaggerOptions = {
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 
-export default function (app) {
+export default function(app) {
+  app.get('/', (req, res, next) => {
+    if (req.hostname === 'localhost') {
+      swaggerUi.setup(swaggerDocs)(req, res, next);
+    } else {
+      res.send('API funcionando');
+    }
+  });
   app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 }

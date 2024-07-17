@@ -17,7 +17,7 @@ const router = express.Router();
  *       400:
  *         description: Internal Server ERROR
  */
-router.get('/');
+router.get('/')
 
 /**
  * @swagger
