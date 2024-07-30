@@ -3,6 +3,7 @@ import express from 'express';
 import { createPaymentHandler } from '../controllers/paymentController.js';
 import { webhookHandler } from '../controllers/webhookController.js';
 
+
 const router = express.Router();
 
 /**
@@ -14,11 +15,9 @@ const router = express.Router();
  *       200:
  *         description: API funcionando
  *       400:
- *         description: DEU PAU
+ *         description: Internal Server ERROR
  */
-router.get('/', (req, res) => {
-  res.send('API funcionando');
-});
+router.get('/')
 
 /**
  * @swagger
@@ -83,8 +82,8 @@ router.post('/payment', createPaymentHandler);
  *                 type: object
  *                 properties:
  *                   id:
- *                   type: string
- *                   example: 123456789
+ *                     type: string
+ *                     example: 123456789
  *               date_created:
  *                 type: date
  *                 example: 2021-09-01T00:00:00Z
@@ -98,8 +97,8 @@ router.post('/payment', createPaymentHandler);
  *                type: string
  *                example: payment
  *               user_id:
- *                 type: string
- *                 example: 123456
+ *                type: string
+ *                example: 123456
  *     responses:
  *       200:
  *         description: Data inserted successfully
@@ -109,6 +108,7 @@ router.post('/payment', createPaymentHandler);
  *         description: Error inserting data
  *       304:
  *        description: Payment previously approved
+ * 
  */
 router.post('/notify', webhookHandler);
 
