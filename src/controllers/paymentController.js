@@ -1,5 +1,4 @@
 import { createPayment } from '../services/mercadoPagoService.js';
-import { gerarIdempotencyKey } from '../utils/idempotencyKey.js';
 
 export const createPaymentHandler = (req, res) => {
   const { paymentData } = req.body;
@@ -16,7 +15,6 @@ export const createPaymentHandler = (req, res) => {
         number: paymentData.number,
       },
     },
-    idempotencyKey: gerarIdempotencyKey(40),
   })
   .then((result) => res.status(201).json({ result: result }))
   .catch((error) => res.status(error.status).json({ error: error.message }));
