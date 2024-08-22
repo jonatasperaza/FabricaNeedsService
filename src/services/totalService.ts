@@ -1,11 +1,12 @@
-import sql from '../config/database.js';
+import sql from "../config/database";
 
-export const updateTotal = async (valor) => {
+export const updateTotal = async (valor: number): Promise<any> => {
   try {
     const total = await sql`SELECT * FROM "fabricaNeeds_total"`;
-    
+
     const atualizar = total[0].total + valor;
-    const result = await sql`UPDATE "fabricaNeeds_total" SET total = ${atualizar} where id = 1`;
+    const result =
+      await sql`UPDATE "fabricaNeeds_total" SET total = ${atualizar} WHERE id = 1`;
     console.log(`mudando o total para ${atualizar}`);
     return result;
   } catch (error) {
@@ -14,11 +15,12 @@ export const updateTotal = async (valor) => {
   }
 };
 
-export const subtractTotal = async (valor) => {
+export const subtractTotal = async (valor: number): Promise<any> => {
   try {
     const total = await sql`SELECT * FROM "fabricaNeeds_total"`;
     const atualizar = total[0].total - valor;
-    const result = await sql`UPDATE "fabricaNeeds_total" SET total = ${atualizar} where id = 1`;
+    const result =
+      await sql`UPDATE "fabricaNeeds_total" SET total = ${atualizar} WHERE id = 1`;
     console.log(`mudando o total para ${atualizar}`);
     return result;
   } catch (error) {

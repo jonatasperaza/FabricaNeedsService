@@ -1,0 +1,6 @@
+PGHOST='ep-aged-butterfly-a5lhu9xt.us-east-2.aws.neon.tech'
+PGDATABASE='FabricaNeedsO'
+PGUSER='neondb_owner'
+PGPASSWORD='bPf52pymLtUD'
+ENDPOINT_ID='ep-aged-butterfly-a5lhu9xt'
+MERCADOPAGO_TOKEN='APP_USR-942949289577962-050812-4019ece557a9f806f53560a6aa186e7a-1138000306'

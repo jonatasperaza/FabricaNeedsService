@@ -1,10 +1,9 @@
-// src/routes/index.js
-import express from 'express';
-import { createPaymentHandler } from '../controllers/paymentController.js';
-import { webhookHandler } from '../controllers/webhookController.js';
+// src/routes/index.ts
+import express, { Request, Response, Router } from "express";
+import { createPaymentHandler } from "../controllers/paymentController.js";
+import { webhookHandler } from "../controllers/webhookController.js";
 
-
-const router = express.Router();
+const router: Router = express.Router();
 
 /**
  * @swagger
@@ -17,7 +16,9 @@ const router = express.Router();
  *       400:
  *         description: Internal Server ERROR
  */
-router.get('/')
+router.get("/", (req: Request, res: Response) => {
+  res.status(200).send("API funcionando");
+});
 
 /**
  * @swagger
@@ -58,7 +59,7 @@ router.get('/')
  *       400:
  *         description: Error creating payment
  */
-router.post('/payment', createPaymentHandler);
+router.post("/payment", createPaymentHandler);
 
 /**
  * @swagger
@@ -85,7 +86,8 @@ router.post('/payment', createPaymentHandler);
  *                     type: string
  *                     example: 123456789
  *               date_created:
- *                 type: date
+ *                 type: string
+ *                 format: date-time
  *                 example: 2021-09-01T00:00:00Z
  *               id:
  *                 type: string
@@ -108,8 +110,7 @@ router.post('/payment', createPaymentHandler);
  *         description: Error inserting data
  *       304:
  *        description: Payment previously approved
- * 
  */
-router.post('/notify', webhookHandler);
+router.post("/notify", webhookHandler);
 
 export default router;
