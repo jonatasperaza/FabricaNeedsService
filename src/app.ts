@@ -1,21 +1,20 @@
-import { fileURLToPath } from "url";
-import { dirname } from "path";
-import path from "path";
-import express from "express";
-import helmet from "helmet";
+import express, { Express } from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
+import path from "path";
+import helmet from "helmet";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+
 import router from "./routes/index.js";
 import swaggerConfig from "./config/swagger.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-process.env.NODE_PATH = path.resolve(__dirname, "../node_modules");
-import("module")
-  .then((module) => module.createRequire(import.meta.url))
-  .then((require) => require("module").Module._initPaths());
 
-const app = express();
+process.env.NODE_PATH = path.resolve(__dirname, "../node_modules");
+
+const app: Express = express();
 
 app.use(
   helmet({
@@ -34,16 +33,20 @@ app.use(
     },
   })
 );
+
 app.use(helmet.frameguard({ action: "deny" })); // Protege contra clickjacking
 app.use(helmet.noSniff()); // Protege contra MIME type sniffing
 app.use(helmet.xssFilter()); // Protege contra ataques XSS
 app.use(helmet.hidePoweredBy()); // Oculta o cabeçalho X-Powered-By
+// app.use(helmet.hsts({ maxAge: 31536000 })); // Protege contra ataques de HTTPS
+// app.use(helmet.ieNoOpen()); // Previne que o arquivo seja aberto no IE
 
 app.use(bodyParser.json());
 app.use(cors());
-app.use("/", router);
 swaggerConfig(app);
+app.use("/", router);
 
-app.listen(3000, () => {
-  console.log("Servidor rodando na porta 3000");
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log(`Servidor rodando na porta ${PORT}`);
 });
