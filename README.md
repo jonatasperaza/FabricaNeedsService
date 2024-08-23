@@ -15,8 +15,8 @@ Fabrica Needs Service is a microservice built with Node.js, Express, and Postgre
 ### Prerequisites
 
 - Node.js (>=14.x)
-- PostgreSQL
-- MercadoPago account
+- PostgreSQL account (database)
+- MercadoPago account (+18)
 - Vercel account (for deployment)
 
 ### Installation
@@ -24,8 +24,8 @@ Fabrica Needs Service is a microservice built with Node.js, Express, and Postgre
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/fabrica-needs-service.git
-   cd fabrica-needs-service
+   git clone https://github.com/jonatasperaza/FabricaNeedsService.git
+   cd FabricaNeedsService
    ```
 
 2. Install dependencies:
@@ -50,7 +50,7 @@ Fabrica Needs Service is a microservice built with Node.js, Express, and Postgre
 Start the server:
 
    ```bash
-   npm start
+   npm run dev
    ```
 
 The server will start on http://localhost:3000.
@@ -61,18 +61,25 @@ The server will start on http://localhost:3000.
 .
 ├── src
 │   ├── controllers
-│   │   ├── paymentController.js
-│   │   └── webhookController.js
+│   │   ├── paymentController.ts
+│   │   └── webhookController.ts
 │   ├── services
-│   │   ├── mercadoPagoService.js
-│   │   └── totalService.js
+│   │   ├── mercadoPagoService.ts
+│   │   └── totalService.ts
 │   ├── config
-│   │   └── database.js
+│   │   └── database.ts
 │   ├── routes
-│   │   └── index.js
-│   └── app.js
-├── .env
+│   │   └── index.ts
+|   ├── utils
+|   |   ├── idempotencyKey.ts
+|   |   └── pingStatus.ts
+|   ├── types
+|   |   └── declare.d.ts
+│   └── app.ts
+├── .env (Create your env)
 ├── package.json
+├── README.md
+├── tsconfig.json
 └── vercel.json
 ```
 
@@ -82,7 +89,7 @@ The server will start on http://localhost:3000.
 
 - URL: `/`
 - Method: `GET`
-- Description: heck if the API is running.
+- Description: Check if the API is running.
 - Response:
     - `200 OK`
 
@@ -95,12 +102,12 @@ The server will start on http://localhost:3000.
     ```json
     {
       "paymentData": {
-        "transaction_amount": 0,
-        "description": "",
+        "transaction_amount": 1,
+        "description": "example",
         "paymentMethodId": "pix",
-        "email": "store.email",
+        "email": "example@example.example",
         "identificationType": "CPF",
-        "number": 0
+        "number": 12345678901
       }
     }
 
@@ -139,7 +146,7 @@ Contributions are welcome! Please open an issue or submit a pull request for any
 ### Support
 For support, open an issue on the GitHub repository.
 ### Author
-Anthony Gabriello && Jonatas Peraza
+[Anthony Gabriel Loche Dos Reis](https://github.com/AnthonyLoche) && [Jonatas Silva Peraza](https://github.com/jonatasperaza)
 
 
 
