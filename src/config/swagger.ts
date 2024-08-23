@@ -34,5 +34,4 @@ export default function (app: Express): void {
       res.send("API funcionando");
     }
   });
-  app.use("/", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 }

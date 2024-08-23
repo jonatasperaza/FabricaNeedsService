@@ -1,6 +1,6 @@
 import { MercadoPagoConfig, Payment } from "mercadopago";
 import dotenv from "dotenv";
-
+import { gerarIdempotencyKey } from "../utils/idempotencyKey.js";
 dotenv.config();
 const { MERCADOPAGO_TOKEN } = process.env;
 
@@ -15,7 +15,7 @@ export const createPayment = (paymentData: any): Promise<any> => {
     const payment = new Payment(client);
     return payment.create({
       body: paymentData,
-      requestOptions: { idempotencyKey: paymentData.idempotencyKey },
+      requestOptions: { idempotencyKey: gerarIdempotencyKey(40) },
     });
   } catch (error) {
     console.log(error);
