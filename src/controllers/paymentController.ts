@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { createPayment } from "../services/mercadoPagoService.js";
 
+
 export const createPaymentHandler = (req: Request, res: Response): void => {
   const { paymentData } = req.body;
   console.log(paymentData);
