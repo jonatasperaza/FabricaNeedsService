@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node dist/app.js",
     "build": "tsc",
-    "dev": "ts-node --transpileOnly --project tsconfig.json src/app.ts"
+    "dev": "node --loader ts-node/esm --experimental-specifier-resolution=node --no-warnings src/app.ts"
   },
   "dependencies": {
     "body-parser": "^1.20.2",
