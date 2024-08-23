@@ -2,7 +2,7 @@
   "name": "@fabrica-needs/service",
   "version": "1.0.0",
   "description": "FabricaNeedsService",
-  "main": "dist/app.js",
+  "main": "src/app.ts",
   "type": "module",
   "scripts": {
     "start": "node dist/app.js",

@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import { getPayment } from "../services/mercadoPagoService";
-import { updateTotal, subtractTotal } from "../services/totalService";
-import sql from "../config/database";
+import { getPayment } from "../services/mercadoPagoService.js";
+import { updateTotal, subtractTotal } from "../services/totalService.js";
+import sql from "../config/database.js";
 
 export const webhookHandler = async (
   req: Request,

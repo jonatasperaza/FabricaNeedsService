@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { createPayment } from "../services/mercadoPagoService";
-import { gerarIdempotencyKey } from "../utils/idempotencyKey";
+import { createPayment } from "../services/mercadoPagoService.js";
+import { gerarIdempotencyKey } from "../utils/idempotencyKey.js";
 
 export const createPaymentHandler = (req: Request, res: Response): void => {
   const { paymentData } = req.body;

@@ -1,4 +1,4 @@
-import sql from "../config/database";
+import sql from "../config/database.js";
 
 export const updateTotal = async (valor: number): Promise<any> => {
   try {
