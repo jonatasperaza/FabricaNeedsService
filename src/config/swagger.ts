@@ -2,7 +2,7 @@ import swaggerJsDoc, { Options } from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
 import { Express } from "express";
 
-const swaggerOptions: Options = {
+const swaggerOptions = {
   swaggerDefinition: {
     openapi: "3.0.0",
     info: {
@@ -22,7 +22,7 @@ const swaggerOptions: Options = {
     ],
   },
   apis: ["src/routes/*.ts"], // Atualize a extensão dos arquivos para .ts
-};
+} as swaggerJsDoc.Options;
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 

@@ -66,10 +66,10 @@ export const webhookHandler = async (
     } else {
       return res.status(201).json({ message: "Dados recebidos com sucesso" });
     }
-  } catch (error) {
+  } catch (error: any) {
     console.error(error);
     return res
-      .status(400)
+      .status(500)
       .json({ message: "Erro ao inserir dados", error: error.message });
   }
 };
