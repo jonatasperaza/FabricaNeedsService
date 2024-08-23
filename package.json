@@ -9,6 +9,19 @@
     "build": "tsc",
     "dev": "node --loader ts-node/esm --experimental-specifier-resolution=node --no-warnings src/app.ts"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jonatasperaza/FabricaNeedsService.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jonatasperaza/FabricaNeedsService/issues",
+    "email": "jonatassilvaperaza@gmail.com"
+  },
+  "author": {
+    "name": "Jonatas Peraza",
+    "email": "jonatassilvaperaza@gmail.com",
+    "url": "https://github.com/jonatasperaza"
+  },
   "dependencies": {
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
